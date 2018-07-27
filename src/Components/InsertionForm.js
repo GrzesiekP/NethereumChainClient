@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { NumericTextBox, Input, Switch } from '@progress/kendo-react-inputs';
+import { NumericTextBox } from '@progress/kendo-react-inputs';
+import $ from 'jquery';
 import '@progress/kendo-theme-default/dist/all.css';
 
 export default class InsertionForm extends Component {
@@ -7,18 +8,37 @@ export default class InsertionForm extends Component {
         super(props);
         this.state = {
             locationName: "",
-            publicKey: "",
+            walletAddress: "",
             privateKey: "",
             gasLimit: 400000
         }
+
+        this.HandleSubmit = this.HandleSubmit.bind(this);
     }
 
-    HandleSubmit(event) {
-
+    HandleSubmit = (event) => {
+        this.setState({
+            locationName: this.refs.locationName.value,
+            walletAddress: this.refs.walletAddress.value,
+            privateKey: this.refs.privateKey.value,
+            gasLimit: this.refs.gasLimit.value
+        });
+        
+        this.SendPostLocation();
     }
 
-    HandleNameChange(event){
-        this.setState({locationName: event.target.value});
+    SendPostLocation = () => {
+        var ncUrl = "https://nethereumchain.azurewebsites.net/api/v1/location";
+        
+        // POST here
+
+        // $.ajax({
+        //     type: 'POST',
+        //     url: ncUrl,
+        //     data: this.state,
+        //     Accept : "application/json",
+        //     contentType: "application/json"
+        //   })
     }
 
     render() {
@@ -35,11 +55,11 @@ export default class InsertionForm extends Component {
 
                                     <label className="k-form-field">
                                         <span>Location Name <span className="k-required">*</span></span>
-                                        <input className="k-textbox" placeholder="Location Name"/>
+                                        <input className="k-textbox" ref="locationName" value="Location33" onChange={this.HandleNameChange}/>
                                     </label>
                                     <label className="k-form-field">
                                         <span>Wallet Address <span className="k-required">*</span></span>
-                                        <input className="k-textbox" placeholder="Wallet Address" />
+                                        <input className="k-textbox" ref="walletAddress" value="0x63f287fA7f721BA4CD61Ca376890F3087c539D84" />
                                     </label>
                                 </fieldset>
 
@@ -49,6 +69,7 @@ export default class InsertionForm extends Component {
                                     <label className="k-form-field">
                                         <span>Gas Limit <span className="k-field-info">optional</span></span>
                                         <NumericTextBox
+                                        ref="gasLimit"
                                         format="n"
                                         min={0}
                                         step={1}
@@ -57,13 +78,13 @@ export default class InsertionForm extends Component {
                                     </label>
                                     <label className="k-form-field">
                                         <span>Private Key <span className="k-required">*</span></span>
-                                        <input type="password" className="k-textbox" placeholder="Private Key"/>
+                                        <input className="k-textbox" ref="privateKey" value="8097f22574d1d032a14e8ad75dd313eb1bb2001d0947fb4b697504690f60ec30" />
                                     </label>
                                 </fieldset>
 
                                 <div className="text-right">
-                                <button type="button" className="k-button">Cancel</button> &nbsp;
-                                <button type="button" className="k-button k-primary">Submit</button>
+                                    <button type="button" className="k-button">Cancel</button> &nbsp;
+                                    <button type="button" className="k-button k-primary" onClick={this.HandleSubmit}>Submit</button>
                                 </div>
                             </form>
                         </div>

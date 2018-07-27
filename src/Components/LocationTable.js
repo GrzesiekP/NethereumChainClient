@@ -21,7 +21,7 @@ export default class LocationTable extends Component {
   componentDidMount() {
     fetch("https://nethereumchain.azurewebsites.net/api/v1/location")
     .then(resp => {
-      if (resp.status == 200 || resp.ok){
+      if (resp.status === 200 || resp.ok){
         return resp.json();
       }
     })
