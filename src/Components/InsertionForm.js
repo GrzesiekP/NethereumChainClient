@@ -8,37 +8,34 @@ export default class InsertionForm extends Component {
         super(props);
         this.state = {
             locationName: "",
-            walletAddress: "",
-            privateKey: "",
-            gasLimit: 400000
+            userAddress: "",
+            userPrivateKey: "",
+            gas: 400000
         }
-
         this.HandleSubmit = this.HandleSubmit.bind(this);
     }
 
     HandleSubmit = (event) => {
         this.setState({
             locationName: this.refs.locationName.value,
-            walletAddress: this.refs.walletAddress.value,
-            privateKey: this.refs.privateKey.value,
-            gasLimit: this.refs.gasLimit.value
+            userAddress: this.refs.walletAddress.value,
+            userPrivateKey: this.refs.privateKey.value,
+            gas: this.refs.gasLimit.value
         });
-        
         this.SendPostLocation();
     }
 
     SendPostLocation = () => {
         var ncUrl = "https://nethereumchain.azurewebsites.net/api/v1/location";
-        
-        // POST here
+        var payload = JSON.stringify(this.state)
 
-        // $.ajax({
-        //     type: 'POST',
-        //     url: ncUrl,
-        //     data: this.state,
-        //     Accept : "application/json",
-        //     contentType: "application/json"
-        //   })
+        $.ajax({
+            type: 'POST',
+            url: ncUrl,
+            data: payload,
+            Accept : "application/json",
+            contentType: "application/json"
+          });
     }
 
     render() {
@@ -55,7 +52,7 @@ export default class InsertionForm extends Component {
 
                                     <label className="k-form-field">
                                         <span>Location Name <span className="k-required">*</span></span>
-                                        <input className="k-textbox" ref="locationName" value="Location33" onChange={this.HandleNameChange}/>
+                                        <input className="k-textbox" ref="locationName"/>
                                     </label>
                                     <label className="k-form-field">
                                         <span>Wallet Address <span className="k-required">*</span></span>
