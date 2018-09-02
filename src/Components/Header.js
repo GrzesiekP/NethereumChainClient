@@ -7,7 +7,7 @@ export default class Header extends Component {
         return(
         <header className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
-            <h1 className="App-title">Welcome to Nethereum Chain</h1>
+            <h1 className="App-title">Welcome to Nethereum Chain React Client</h1>
         </header>
         )
     }

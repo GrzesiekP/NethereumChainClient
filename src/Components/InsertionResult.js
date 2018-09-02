@@ -1,0 +1,25 @@
+import React, { Component } from 'react';
+
+export default function InsertionResult(props) {
+    if (!props.isResultSuccess) {
+        return (
+            <div style={{color: "gray"}}>
+                <p>Insert location to blockchain and see the result here.</p>
+            </div>
+        );
+    }
+    if (props.isResultSuccess) {
+        var trxUrl = "https://ropsten.etherscan.io/tx/" + props.trxHash
+        return (
+            <div style={{color: "green"}}>
+                <p>Check status of transaction <a href={trxUrl}>{props.trxHash}</a></p> 
+            </div>
+        );
+    } else {
+        return (
+            <div style={{color: "red"}}>
+                <p>Failed to insert location {props.locationName}.</p> 
+            </div>
+        );
+    }
+  }

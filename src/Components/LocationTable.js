@@ -19,7 +19,8 @@ export default class LocationTable extends Component {
   }
   
   componentDidMount() {
-    fetch("https://nethereumchain.azurewebsites.net/api/v1/location")
+    var apiUrl = "http://localhost:50818/api/v1/location"
+    fetch(apiUrl)
     .then(resp => {
       if (resp.status === 200 || resp.ok){
         return resp.json();
@@ -55,21 +56,21 @@ export default class LocationTable extends Component {
   render() {
     return (
       <div>
-      <div className="LocationTable">
-      <Grid 
-      style={{ height: '400px', width: 'auto' }} 
-      data={this.state.data} 
-      filterable={true} 
-      filter={this.state.filter} 
-      onFilterChange={this.filterChange} 
-      resizable={true} >
-      <Column field="locationId" title="ID" width="200px" filter="numeric" />
-      <Column field="locationName" title="Location Name" width="auto" filter="text" />
-      <Column field="previousLocationId" title="Previous Location ID" width="auto" />
-      <Column field="previousLocationName" title="Previous Location Name" width="auto" />
-      <Column field="timestamp" title="Timestamp Created" width="auto" />
-      </Grid>
-      </div>
+        <div className="LocationTable">
+          <Grid 
+          style={{ height: '400px', width: 'auto' }} 
+          data={this.state.data} 
+          filterable={true} 
+          filter={this.state.filter} 
+          onFilterChange={this.filterChange} 
+          resizable={true} >
+            <Column field="locationId" title="ID" width="200px" filter="numeric" />
+            <Column field="locationName" title="Location Name" width="auto" filter="text" />
+            <Column field="previousLocationId" title="Previous Location ID" width="auto" />
+            <Column field="previousLocationName" title="Previous Location Name" width="auto" />
+            <Column field="timestamp" title="Timestamp Created" width="auto" />
+          </Grid>
+        </div>
       </div>
     );
   }
