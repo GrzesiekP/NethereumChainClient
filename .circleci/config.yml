@@ -32,9 +32,4 @@ workflows:
   build_and_deploy:
     jobs:
       - build
-      - deploy:
-          requires:
-            - build
-          filter:
-            branches:
-              only: master
+      - deploy
