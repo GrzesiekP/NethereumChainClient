@@ -35,7 +35,7 @@ jobs:
           at: .
       - run:
           name: list
-          command: 'ls -l'
+          command: 'ls -l ./node_modules/.bin/'
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
