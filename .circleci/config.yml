@@ -34,13 +34,13 @@ jobs:
       - attach_workspace:
           at: .
       - run:
-          name: list
-          command: 'ls -l ./node_modules/.bin/'
+          name: install-firebase
+          command: 'npm install firebase'
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
           name: deploy_master_to_firebase
-          command: './node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN'
+          command: 'firebase deploy --token=$FIREBASE_DEPLOY_TOKEN'
 workflows:
   version: 2
   build_and_deploy:
