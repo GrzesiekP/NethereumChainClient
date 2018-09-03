@@ -1,6 +1,7 @@
 version: 2
 jobs:
   build:
+    working_directory: ~/nc
     docker:
       - image: circleci/node:8.9.4
     steps:
@@ -21,6 +22,7 @@ jobs:
           name: build
           command: 'npm run build'
   deploy:
+    working_directory: ~/nc
     docker:
       - image: circleci/node:8.9.4
     steps:
