@@ -36,9 +36,6 @@ jobs:
       - run:
           name: list
           command: 'ls -l'
-      - run:
-          name: list
-          command: 'ls -l ~/nc'
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
