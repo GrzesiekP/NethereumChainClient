@@ -27,6 +27,7 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "firebase": "^5.4.2"
+    "firebase": "^5.4.2",
+    "firebase-tools": "^4.2.1"
   }
 }
