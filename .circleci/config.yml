@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build-job:
+  build:
     docker:
       - image: circleci/node:8.9.4
     steps:
@@ -20,7 +20,7 @@ jobs:
       - run:
           name: build
           command: 'npm run build'
-  deploy-job:
+  deploy:
     docker:
       - image: circleci/node:8.9.4
     steps:
@@ -29,15 +29,12 @@ jobs:
           command: './node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN'
 workflows:
   version: 2
-  build:
+  build_and_deploy:
     jobs:
-      - build-job
-  deploy:
-    jobs:
-      - build-job
-      - deploy-job:
+      - build
+      - deploy:
           requires:
-            - build-job
+            - build
           filter:
             branches:
               only: master
