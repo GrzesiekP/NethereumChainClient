@@ -23,16 +23,16 @@ jobs:
       - run:
           name: build
           command: 'npm run build'
-      - run:
-          name: list
-          command: 'ls -l'
-      - run:
-          name: list
-          command: 'ls -l ~/nc'
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
   deploy:
     docker:
       - image: circleci/node:8.9.4
     steps:
+      - attach_to_workspace:
+          at: .
       - run:
           name: list
           command: 'ls -l'
@@ -52,3 +52,6 @@ workflows:
       - deploy:
           requires:
             - build
+          filters:
+            branches:
+              only: master
