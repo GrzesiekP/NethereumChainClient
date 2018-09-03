@@ -20,6 +20,13 @@ jobs:
       - run:
           name: build
           command: 'npm run build'
+  deploy:
+    docker:
+      - image: circleci/node:8.9.4
+    steps:
+      - run:
+        name: test-cmd
+        command: 'echo 1'
 workflows:
   version: 2
   build_and_deploy:
