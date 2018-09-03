@@ -35,7 +35,7 @@ jobs:
           at: .
       - run:
           name: install-firebase
-          command: 'npm install firebase'
+          command: 'npm install -g firebase'
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
