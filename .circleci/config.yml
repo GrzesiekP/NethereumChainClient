@@ -1,7 +1,6 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/nc
     docker:
       - image: circleci/node:8.9.4
     steps:
@@ -31,7 +30,6 @@ jobs:
           name: list
           command: 'ls -l ~/nc'
   deploy:
-    working_directory: ~/nc
     docker:
       - image: circleci/node:8.9.4
     steps:
