@@ -23,7 +23,7 @@ jobs:
       - run:
           name: build
           command: 'npm run build'
-      - persist_to_workspace:
+      - persist_workspace:
           root: .
           paths:
             - .
