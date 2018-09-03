@@ -7,6 +7,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: show-branch
+          command: 'echo ${CIRCLE_BRANCH}'
+      - run:
           name: update-npm
           command: 'sudo npm install -g npm@latest'
       - restore_cache:
@@ -21,6 +24,12 @@ jobs:
       - run:
           name: build
           command: 'npm run build'
+      - run:
+          name: list
+          command: 'ls -l'
+      - run:
+          name: list
+          command: 'ls -l ~/nc'
   deploy:
     working_directory: ~/nc
     docker:
@@ -32,6 +41,8 @@ jobs:
       - run:
           name: list
           command: 'ls -l ~/nc'
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
       - run:
           name: deploy_master_to_firebase
           command: './node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN'
