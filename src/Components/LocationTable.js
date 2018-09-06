@@ -35,12 +35,12 @@ export default class LocationTable extends Component {
   
   filterChange(event) {
     this.setState({
-      data: this.GetProducts(event.filter, this.state.allData),
+      data: this.getProducts(event.filter, this.state.allData),
       filter: event.filter
     });
   }
   
-  GetProducts(filter, data) {
+  getProducts(filter, data) {
     const slicedData = data.slice();
     var filtered = filterBy(slicedData, filter)
     return filtered;
@@ -75,5 +75,3 @@ export default class LocationTable extends Component {
     );
   }
 }
-
-//export default LocationTable;

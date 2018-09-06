@@ -12,17 +12,17 @@ export default class InsertionForm extends Component {
             isResultSuccess: null,
             lastInsertedTransactionHash: null,
         }
-        this.HandleSubmit = this.HandleSubmit.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    HandleSubmit = (event) => {
+    handleSubmit = (event) => {
         this.setState({
             locationName: this.refs.locationName.value,
         });
-        this.SendPostLocation();
+        this.sendPostLocation();
     }
 
-    SendPostLocation = () => {
+    sendPostLocation = () => {
         var ncUrl = "http://localhost:50818/api/v1/location";
         var payload = JSON.stringify({
             locationName: this.refs.locationName.value,
@@ -37,19 +37,19 @@ export default class InsertionForm extends Component {
             data: payload,
             Accept : "application/json",
             contentType: "application/json",
-            success: this.OnInsertionSuccess,
-            error: this.OnInsertionError
+            success: this.onInsertionSuccess,
+            error: this.onInsertionError
           });
     }
 
-    OnInsertionSuccess = (msg, status, jqXHR) => {
+    onInsertionSuccess = (msg, status, jqXHR) => {
         this.setState({
             isResultSuccess: true,
             lastInsertedTransactionHash: msg
         });
     }
 
-    OnInsertionError = (response) => {
+    onInsertionError = (response) => {
         this.setState({
             isResultSuccess: false
         });
@@ -68,7 +68,7 @@ export default class InsertionForm extends Component {
                                         locationName={this.state.locationName} 
                                         trxHash={this.state.lastInsertedTransactionHash}
                                     />
-                                    <form className="k-form" onSubmit={this.HandleSubmit}>
+                                    <form className="k-form" onSubmit={this.handleSubmit}>
                                         <fieldset>
                                             <legend>Location Details</legend>
 
@@ -103,7 +103,7 @@ export default class InsertionForm extends Component {
 
                                         <div className="text-right">
                                             <button type="button" className="k-button">Cancel</button> &nbsp;
-                                            <button type="button" className="k-button k-primary" onClick={this.HandleSubmit}>Submit</button>
+                                            <button type="button" className="k-button k-primary" onClick={this.handleSubmit}>Submit</button>
                                         </div>
                                     </form>
                                 </div>
