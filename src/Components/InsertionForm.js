@@ -23,7 +23,7 @@ export default class InsertionForm extends Component {
     }
 
     sendPostLocation = () => {
-        var ncUrl = "http://localhost:50818/api/v1/location";
+        var ncUrl = "https://nethereumchain.azurewebsites.net/api/v1/location";
         var payload = JSON.stringify({
             locationName: this.refs.locationName.value,
             userAddress: this.refs.walletAddress.value,

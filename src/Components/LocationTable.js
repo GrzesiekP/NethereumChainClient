@@ -19,7 +19,7 @@ export default class LocationTable extends Component {
   }
   
   componentDidMount() {
-    var apiUrl = "http://localhost:50818/api/v1/location"
+    var apiUrl = "https://nethereumchain.azurewebsites.net/api/v1/location"
     fetch(apiUrl)
     .then(resp => {
       if (resp.status === 200 || resp.ok){
