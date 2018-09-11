@@ -9,7 +9,7 @@ export default function InsertionResult(props) {
         );
     }
     if (props.isResultSuccess) {
-        var trxUrl = "https://ropsten.etherscan.io/tx/" + props.trxHash
+        var trxUrl = api.ropstenUrl + props.trxHash
         return (
             <div style={{color: "green"}}>
                 <p>Check status of transaction <a href={trxUrl}>{props.trxHash}</a></p> 

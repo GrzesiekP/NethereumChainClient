@@ -3,6 +3,7 @@ import InsertionResult from './InsertionResult'
 import { NumericTextBox } from '@progress/kendo-react-inputs';
 import $ from 'jquery';
 import '@progress/kendo-theme-default/dist/all.css';
+import api from '../api';
 
 export default class InsertionForm extends Component {
     constructor(props) {
@@ -23,7 +24,6 @@ export default class InsertionForm extends Component {
     }
 
     sendPostLocation = () => {
-        var ncUrl = "https://nethereumchain.azurewebsites.net/api/v1/location";
         var payload = JSON.stringify({
             locationName: this.refs.locationName.value,
             userAddress: this.refs.walletAddress.value,
@@ -33,7 +33,7 @@ export default class InsertionForm extends Component {
 
         $.ajax({
             type: 'POST',
-            url: ncUrl,
+            url: api.locationUrl,
             data: payload,
             Accept : "application/json",
             contentType: "application/json",

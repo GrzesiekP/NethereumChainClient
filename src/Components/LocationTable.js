@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '@progress/kendo-theme-default/dist/all.css';
 import { Grid, GridColumn as Column } from '@progress/kendo-react-grid';
 import { filterBy } from '@progress/kendo-data-query';
+import api from '../api';
 
 export default class LocationTable extends Component {
   constructor(props) {
@@ -19,8 +20,7 @@ export default class LocationTable extends Component {
   }
   
   componentDidMount() {
-    var apiUrl = "https://nethereumchain.azurewebsites.net/api/v1/location"
-    fetch(apiUrl)
+    fetch(api.locationUrl)
     .then(resp => {
       if (resp.status === 200 || resp.ok){
         return resp.json();
